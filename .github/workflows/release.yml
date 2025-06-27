@@ -38,11 +38,13 @@ jobs:
         
     - name: Create distribution package
       run: |
-        if not exist "Pickish_Distribution" mkdir "Pickish_Distribution"
-        copy "dist\Pickish.exe" "Pickish_Distribution\"
-        copy "README.md" "Pickish_Distribution\README.md"
-        copy "VERSION_HISTORY.md" "Pickish_Distribution\"
-        copy "run_pickish.bat" "Pickish_Distribution\"
+        if (-not (Test-Path "Pickish_Distribution")) {
+          New-Item -ItemType Directory -Path "Pickish_Distribution" | Out-Null
+        }
+        Copy-Item "dist\\Pickish.exe" "Pickish_Distribution\\"
+        Copy-Item "README.md" "Pickish_Distribution\\README.md"
+        Copy-Item "VERSION_HISTORY.md" "Pickish_Distribution\\"
+        Copy-Item "run_pickish.bat" "Pickish_Distribution\\"
         
     - name: Create ZIP archive
       run: |
