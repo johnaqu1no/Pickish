@@ -50,59 +50,19 @@ jobs:
       run: |
         $version = "${{ github.ref_name }}"
         $version = $version.TrimStart('v')
-        powershell Compress-Archive -Path "Pickish_Distribution\*" -DestinationPath "Pickish_v$version.zip" -Force
+        $zipName = "Pickish_v$version.zip"
+        Write-Host "Creating ZIP file: $zipName"
+        Compress-Archive -Path "Pickish_Distribution\*" -DestinationPath $zipName -Force
         
     - name: Create Release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: |
-          Pickish_v${{ github.ref_name }}.zip
-        body: |
-          ## Pickish ${{ github.ref_name }}
-          
-          ### 🎉 What's New
-          - Automated build and release from GitHub Actions
-          - Standalone executable for Windows (no Python required)
-          - Three-category photo filtering (Love, Like, Dislike)
-          - Keyboard shortcuts for fast filtering
-          - Undo support for all actions
-          - Auto-rotation for vertical images
-          - Background processing for smooth performance
-          
-          ### 📦 Installation
-          1. Download the ZIP file above
-          2. Extract to any folder on your Windows computer
-          3. Run `Pickish.exe` or double-click `run_pickish.bat`
-          
-          ### ⌨️ Keyboard Shortcuts
-          - **Left Arrow**: Skip/Dislike photo
-          - **Right Arrow**: Like photo  
-          - **Down Arrow**: Love photo
-          - **Up Arrow**: Undo last action
-          - **Space**: Like photo
-          
-          ### 📁 Organization
-          Photos are automatically organized into:
-          - **PERFECT/** - Your absolute favorite photos (Loved)
-          - **FINAL/** - Good photos you want to keep (Liked)
-          - **SKIPPED/** - Photos for later review (Disliked)
-          
-          ### 🔧 System Requirements
-          - Windows 10/11 (64-bit)
-          - 4GB RAM minimum (8GB recommended)
-          - 500MB free disk space
-          
-          ### 📖 Documentation
-          See README.md in the ZIP file for detailed instructions.
-          
-          ### 🐛 Issues & Support
-          If you encounter any issues, please report them on the GitHub repository.
-          
-          ---
-          
-          **Enjoy organizing your photos with Pickish!** 📸✨
-        draft: false
-        prerelease: false
-        generate_release_notes: true
+      run: |
+        $version = "${{ github.ref_name }}"
+        $version = $version.TrimStart('v')
+        $zipName = "Pickish_v$version.zip"
+        
+        Write-Host "Creating GitHub release for $version"
+        
+        # Create release using GitHub CLI with simple notes
+        gh release create $version --title "Pickish $version" --notes "Pickish $version - Photo Filter & Organizer with Love/Like/Dislike categories, keyboard shortcuts, and undo support." --draft false --prerelease false $zipName
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
