@@ -55,15 +55,11 @@ jobs:
         Compress-Archive -Path "Pickish_Distribution\*" -DestinationPath $zipName -Force
         
     - name: Create Release
-      run: |
-        $version = "${{ github.ref_name }}"
-        $version = $version.TrimStart('v')
-        $zipName = "Pickish_v$version.zip"
-        
-        Write-Host "Creating GitHub release for $version"
-        Write-Host "ZIP file: $zipName"
-        
-        # Create release using GitHub CLI
-        gh release create $version --title "Pickish $version" --notes "Pickish $version release" $zipName
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          Pickish_v${{ github.ref_name }}.zip
+        body: |
+          Pickish ${{ github.ref_name }} release
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_PAT }} 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
