@@ -58,7 +58,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          Pickish_v${{ github.ref_name }}.zip
+          Pickish_v*.zip
         body: |
           Pickish ${{ github.ref_name }} release
       env:
