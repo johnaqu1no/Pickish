@@ -66,4 +66,4 @@ jobs:
         # Create release using GitHub CLI
         gh release create $version --title "Pickish $version" --notes "Pickish $version release" $zipName
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }} 
