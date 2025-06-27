@@ -10,7 +10,7 @@ import threading
 import concurrent.futures
 
 class PhotoFilterApp:
-    VERSION = "3.1.0"
+    VERSION = "3.1.1"
     
     def __init__(self, root):
         self.root = root

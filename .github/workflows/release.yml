@@ -24,6 +24,14 @@ jobs:
         pip install -r requirements.txt
         pip install pyinstaller
         
+    - name: Create spec file if not exists
+      run: |
+        if not exist "pickish.spec" (
+          echo "Creating pickish.spec file..."
+          python -m PyInstaller --name Pickish --onefile --windowed --hidden-import PIL._tkinter_finder photo_filter_enhanced.py
+          move "Pickish.spec" "pickish.spec"
+        )
+        
     - name: Build executable
       run: |
         python -m PyInstaller pickish.spec --clean
