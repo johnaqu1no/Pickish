@@ -1,117 +1,198 @@
 # Pickish - Photo Filter & Organizer
 
-A modern Windows application for photographers to quickly filter through their photos and organize them into selected folders.
+[![Build Status](https://github.com/apollyon600/pickish/workflows/Build%20Pickish%20Executable/badge.svg)](https://github.com/apollyon600/pickish/actions)
+[![Release](https://img.shields.io/github/v/release/apollyon600/pickish)](https://github.com/apollyon600/pickish/releases)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-## Features
+**Pickish** is a powerful, user-friendly photo filtering and organization tool that helps you quickly sort through your photo collections using keyboard shortcuts and an intuitive interface.
 
-- **Recursive Photo Scanning**: Automatically finds all photos in the selected input folder and its subfolders
-- **Date-Based Sorting**: Photos are sorted by modification date (newest first) for efficient review
-- **Multiple Format Support**: Supports JPG, JPEG, PNG, BMP, TIFF, GIF, WebP, HEIC, and HEIF formats
-- **Intuitive Interface**: Clean, modern UI with easy-to-use controls
-- **Real-Time Statistics**: Live count of liked and skipped photos
-- **Multiple Input Methods**: 
-  - Click buttons for Like/Dislike
-  - Use keyboard shortcuts (Left arrow = Like, Right arrow = Dislike, Space = Like)
-- **Progress Tracking**: Visual progress bar and photo counter
-- **Duplicate Handling**: Automatically handles duplicate filenames in the output folder
-- **Error Handling**: Graceful handling of corrupted or unsupported image files
-- **Date Information**: Shows modification date for each photo
+## 🚀 Quick Start
 
-## Installation
+### Download Latest Release
+1. Go to [Releases](https://github.com/apollyon600/pickish/releases)
+2. Download the latest `Pickish_vX.X.X.zip`
+3. Extract and run `Pickish.exe`
 
-1. **Install Python** (if not already installed):
-   - Download Python 3.8 or higher from [python.org](https://python.org)
-   - Make sure to check "Add Python to PATH" during installation
+### From Source
+```bash
+git clone https://github.com/apollyon600/pickish.git
+cd pickish
+pip install -r requirements.txt
+python photo_filter_enhanced.py
+```
 
-2. **Install Required Dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## ✨ Features
 
-## Usage
+### 📸 **Three-Category Organization**
+- **❤️ LOVE** → Moves photos to "PERFECT" folder (your absolute favorites)
+- **👍 LIKE** → Moves photos to "FINAL" folder (good photos)
+- **👎 DISLIKE** → Moves photos to "SKIPPED" folder (photos to review later)
 
-1. **Run the Application**:
-   ```bash
-   python photo_filter.py
-   ```
-   Or use the batch files:
-   - `run_pickish.bat` (basic version)
-   - `run_pickish_enhanced.bat` (enhanced version)
+### ⌨️ **Keyboard Shortcuts**
+- **Left Arrow**: Skip/Dislike photo
+- **Right Arrow**: Like photo  
+- **Down Arrow**: Love photo
+- **Up Arrow**: Undo last action
+- **Space**: Like photo
 
-2. **Select Folders**:
-   - Click "Browse" next to "Input Folder" to select the folder containing your photos
-   - Click "Browse" next to "Output Folder" to select where you want to move your liked photos
+### 🔄 **Smart Features**
+- **Undo Support**: Undo any action with Up arrow or Undo button
+- **Auto-rotation**: Vertical images display correctly with EXIF data
+- **Progress Tracking**: See your progress through the photo collection
+- **Background Processing**: Smooth performance with large photo collections
+- **Configuration Memory**: Remembers your folder selections
+- **Move Queue**: Sequential file operations to prevent conflicts
 
-3. **Start Filtering**:
-   - Click "Start Filtering" to begin the photo review process
-   - The app will scan all photos in the input folder (including subfolders)
-   - Photos are automatically sorted by modification date (newest first)
+## 📁 **Folder Structure**
 
-4. **Review Photos**:
-   - **Like a photo**: Click the "👍 Like" button, press Left arrow key, or press Space
-   - **Dislike a photo**: Click the "👎 Dislike" button or press Right arrow key
-   - Photos you like will be moved to your selected output folder
-   - Real-time counters show your progress
+After filtering, your photos will be organized into:
 
-5. **Completion**:
-   - When you've reviewed all photos, you'll see a completion message with final statistics
-   - Click "Start New Session" to begin filtering another folder
+```
+Your Input Folder/
+├── FINAL/          (Liked photos)
+├── PERFECT/        (Loved photos - your favorites)
+├── SKIPPED/        (Disliked photos - for later review)
+└── [remaining photos to filter]
+```
 
-## Keyboard Shortcuts
+## 🎯 **Workflow**
 
-- **Left Arrow** or **Space**: Like the current photo (moves it to output folder)
-- **Right Arrow**: Dislike the current photo (leaves it in place)
+1. **Select Input Folder**: Choose the folder containing your photos
+2. **Start Filtering**: Click "Start Filtering" to begin
+3. **Quick Decisions**: Use arrow keys for fast filtering
+4. **Review Skipped**: Later, review photos in the SKIPPED folder
+5. **Perfect Organization**: Your best photos end up in PERFECT folder
 
-## Supported Photo Formats
+## 💻 **System Requirements**
 
-- JPG/JPEG
-- PNG
-- BMP
-- TIFF/TIF
-- GIF
-- WebP
-- HEIC/HEIF
+- **Windows 10/11** (64-bit)
+- **Python 3.8+** (for development)
+- **4GB RAM** minimum (8GB recommended for large photo collections)
+- **500MB free disk space** for the application
 
-## Features Overview
+## 🛠️ **Development**
 
-### **Date Sorting**
-Photos are automatically sorted by modification date, showing the newest photos first. This helps you review your most recent work efficiently.
-
-### **Real-Time Statistics**
-- **Current Count**: Shows which photo you're viewing (e.g., "Photo 5 of 25")
-- **Liked Count**: Tracks how many photos you've liked so far
-- **Skipped Count**: Tracks how many photos you've disliked/skipped
-- **Progress Bar**: Visual representation of your progress through the collection
-
-### **Simple Controls**
-- **Like Button**: Green button with thumbs up emoji
-- **Dislike Button**: Red button with thumbs down emoji
-- **Keyboard Shortcuts**: Quick navigation without using the mouse
-
-## Tips
-
-- The app automatically handles duplicate filenames by adding a number suffix
-- Photos are displayed at a maximum size of 600x400 pixels for optimal viewing
-- You can see the current photo's filename and modification date below the image
-- The progress bar shows your progress through the photo collection
-- The app creates the output folder automatically if it doesn't exist
-- Photos are sorted by modification date, so you'll see your newest photos first
-
-## Troubleshooting
-
-**"No photos found" error**: Make sure your input folder contains supported image files and that the folder path is correct.
-
-**"Failed to move photo" error**: This usually occurs if the photo is currently open in another application. Close any applications that might be using the photo and try again.
-
-**Image loading errors**: Some image formats might not be supported or the file might be corrupted. The app will skip these files and continue with the next photo.
-
-## System Requirements
-
-- Windows 10 or later
+### Prerequisites
 - Python 3.8 or higher
-- At least 4GB RAM (recommended for large photo collections)
-- Sufficient disk space for your photo collection
+- Git
 
-## License
+### Setup
+```bash
+# Clone the repository
+git clone https://github.com/apollyon600/pickish.git
+cd pickish
 
-This project is open source and available under the MIT License. 
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the application
+python photo_filter_enhanced.py
+```
+
+### Building Executable
+```bash
+# Install PyInstaller
+pip install pyinstaller
+
+# Build executable
+python -m PyInstaller pickish.spec --clean
+
+# Or use the provided batch file
+build_exe.bat
+```
+
+### Project Structure
+```
+pickish/
+├── photo_filter_enhanced.py    # Main application
+├── requirements.txt            # Python dependencies
+├── pickish.spec               # PyInstaller configuration
+├── README.md                  # This file
+├── VERSION_HISTORY.md         # Version history
+├── .github/workflows/         # GitHub Actions
+│   ├── build.yml             # Build workflow
+│   ├── test.yml              # Test workflow
+│   └── release.yml           # Release workflow
+└── .gitignore                # Git ignore rules
+```
+
+## 🤝 **Contributing**
+
+We welcome contributions! Here's how you can help:
+
+### Reporting Issues
+1. Check existing issues first
+2. Create a new issue with:
+   - Clear description of the problem
+   - Steps to reproduce
+   - Expected vs actual behavior
+   - System information
+
+### Submitting Changes
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Make your changes
+4. Test thoroughly
+5. Commit with clear messages: `git commit -m 'Add amazing feature'`
+6. Push to your fork: `git push origin feature/amazing-feature`
+7. Create a Pull Request
+
+### Development Guidelines
+- Follow PEP 8 style guidelines
+- Add comments for complex logic
+- Update version number in `photo_filter_enhanced.py`
+- Update `VERSION_HISTORY.md` with changes
+- Test on Windows before submitting
+
+## 📝 **Version History**
+
+See [VERSION_HISTORY.md](VERSION_HISTORY.md) for detailed version information.
+
+### Latest Version (3.1.0)
+- **NEW**: Love category for perfect photos
+- **NEW**: Down arrow key for quick loving
+- **NEW**: PERFECT folder organization
+- **IMPROVED**: Four-button layout with Love button
+- **ENHANCED**: Full undo support for all actions
+
+## 🔧 **Troubleshooting**
+
+### Common Issues
+
+**App doesn't start:**
+- Ensure you're running Windows 10/11
+- Try running as administrator
+- Check antivirus isn't blocking the file
+
+**Photos don't display:**
+- Supported formats: JPG, JPEG, PNG, BMP, TIFF, GIF, WEBP, HEIC, HEIF
+- Check photos are in the selected input folder
+- Verify photos aren't corrupted
+
+**Performance issues:**
+- Close other applications
+- For large collections (1000+ photos), filter in smaller batches
+- Ensure sufficient RAM (8GB recommended)
+
+## 📄 **License**
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 **Acknowledgments**
+
+- Built with Python and Tkinter
+- Image processing with Pillow (PIL)
+- Executable packaging with PyInstaller
+- Automated builds with GitHub Actions
+
+## 📞 **Support**
+
+- **Issues**: [GitHub Issues](https://github.com/apollyon600/pickish/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/apollyon600/pickish/discussions)
+- **Wiki**: [GitHub Wiki](https://github.com/apollyon600/pickish/wiki)
+
+---
+
+**Enjoy organizing your photos with Pickish!** 📸✨
+
+[⬆ Back to top](#pickish---photo-filter--organizer) 
