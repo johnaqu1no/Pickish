@@ -26,11 +26,11 @@ jobs:
         
     - name: Create spec file if not exists
       run: |
-        if not exist "pickish.spec" (
-          echo "Creating pickish.spec file..."
+        if (-not (Test-Path "pickish.spec")) {
+          Write-Host "Creating pickish.spec file..."
           python -m PyInstaller --name Pickish --onefile --windowed --hidden-import PIL._tkinter_finder photo_filter_enhanced.py
-          move "Pickish.spec" "pickish.spec"
-        )
+          Move-Item "Pickish.spec" "pickish.spec" -Force
+        }
         
     - name: Build executable
       run: |
