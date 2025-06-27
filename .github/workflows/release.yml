@@ -61,8 +61,9 @@ jobs:
         $zipName = "Pickish_v$version.zip"
         
         Write-Host "Creating GitHub release for $version"
+        Write-Host "ZIP file: $zipName"
         
-        # Create release using GitHub CLI with simple notes
-        gh release create $version --title "Pickish $version" --notes "Pickish $version - Photo Filter & Organizer with Love/Like/Dislike categories, keyboard shortcuts, and undo support." --draft false --prerelease false $zipName
+        # Create release using GitHub CLI
+        gh release create $version --title "Pickish $version" --notes "Pickish $version release" $zipName
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
